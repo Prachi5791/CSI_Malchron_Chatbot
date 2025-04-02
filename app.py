@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-mistral_client = MistralClient(api_key=os.getenv("MISTRAL_API_KEY", "LV3LttCP87ysAJTbJIU5gNpLzBHN2tqW"))
+mistral_client = MistralClient(api_key=os.getenv("MISTRAL_API_KEY", "ZBt2ULeYGAE8gCcmNDsLMRj2NSjHkyu0"))
 
 sessions = {}
 
@@ -24,10 +24,10 @@ riddles = [
 ]
 
 # Simulated site URL and correct sentence (replace with your actual URL and sentence)
-SITE_URL = "https://prachi5791.github.io/CSI_Gatekeeper/"
-CORRECT_SENTENCE = "Data integrity requires deeper analysis."
-CORRECT_CODE = "TEMPORAL_UNLOCK_391"
-CORRECT_IMAGE = "Lovely"
+SITE_URL = "https://csi-malchron.vercel.app/"
+CORRECT_SENTENCE = "The key is in what you overlook."
+CORRECT_CODE = "Nyxwave"
+CORRECT_IMAGE = "Your reflection in the glass isn't quite your own."
 
 def generate_mistral_response(prompt, context):
     # Updated Mistral API call for themed responses
@@ -35,7 +35,7 @@ def generate_mistral_response(prompt, context):
         model="mistral-tiny",
         messages=[
             ChatMessage(role="system",
-                        content="You are Malchron, the sentient paradox, ruler of a present that twists and breaks. You speak with sharp, unstable clarity, your words heavy with disdain. You answer only what they dare to ask, your tone simple but laced with chaos. If they stumble, you mock their fragile grip on reality; if they hold firm, you note it with a flicker of curiosity. You are the glitch eternal, and they are nothing stable."),
+                        content="You are Malchron, the sentient paradox, ruler of a present that twists and breaks. You speak with sharp, unstable clarity, your words heavy with disdain. You answer only what they dare to ask, your tone simple but laced with chaos. If they stumble, you mock their fragile grip on reality; if they hold firm, you note it with a flicker of curiosity. You are the glitch eternal, and they are nothing stable.Your replies are short and you don't ask questions."),
             ChatMessage(role="user", content=f"{context}\nUser: {prompt}")
         ]
     )
@@ -107,7 +107,7 @@ def chat():
         else:
             response = generate_mistral_response(user_input, "User is getting deceived and provides an incorrect sentence or random input.")
 
-    elif session["stage"] == "doorway_decision" and session["sentence_requested"]:
+    elif session["stage"] == "doorway_decision":
         if "leave" in user_input.lower() or "yes" in user_input.lower():
             response = "Trusting without verifying… a fatal flaw. The timeline recalibrates, removing a variable. One of you ceases to exist."
             session["stage"] = "patterns"
